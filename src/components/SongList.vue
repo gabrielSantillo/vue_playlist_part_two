@@ -2,14 +2,14 @@
   <div>
     <section>
       <article v-for="song in songs" :key="song[`song_id`]">
-        <p>{{ song[`title`] }}</p>
-        <p>{{ song[`artist`] }}</p>
-        <img
-          :src="song[`img_url`]"
-          alt=""
-          @click="highlight_music"
-          :song_id="song[`song_id`]"
-        />
+          <p>{{ song[`title`] }}</p>
+          <p>{{ song[`artist`] }}</p>
+          <img
+            :src="song[`img_url`]"
+            alt=""
+            @click="highlight_music"
+            :song_id="song[`song_id`]"
+          />
       </article>
     </section>
     <div v-if="song_being_listened === false">
@@ -30,6 +30,8 @@ export default {
       let song_id = details[`target`].getAttribute(`song_id`);
       /* changing the to true the value of the variable */
       this.song_being_listened = true;
+      /* deleting the img so the user can't add twice or more the same music */
+      details[`target`].remove();
 
       /* making a for loop that goes to the entire array  */
       for (let i = 0; i < this.songs.length; i++) {
@@ -86,6 +88,10 @@ section {
 img {
   width: 250px;
   height: 250px;
+  cursor: pointer;
+}
+
+img:hover {
   cursor: pointer;
 }
 </style>
