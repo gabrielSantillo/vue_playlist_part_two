@@ -1,7 +1,6 @@
 <template>
   <div>
     <section>
-      
       <article v-for="song in songs" :key="song[`song_id`]">
         <p>{{ song[`title`] }}</p>
         <p>{{ song[`artist`] }}</p>
@@ -16,23 +15,19 @@
     <div v-if="song_being_listened === false">
       <h2>Pick a song</h2>
     </div>
-    
   </div>
 </template>
 
 <script>
 export default {
-  
   methods: {
-    
     highlight_music(details) {
-      
       let song_id = details[`target`].getAttribute(`song_id`);
-      
-      for(let i = 0; i < this.songs.length; i++) {
-        if(this.songs[i][`song_id`] === song_id) {
-           let chosen_music_name = this.songs[i][`name`];
-           this.$root.$emit(`music_clicked`, chosen_music_name);
+
+      for (let i = 0; i < this.songs.length; i++) {
+        if (this.songs[i][`song_id`] === song_id) {
+          let chosen_music_name = this.songs[i][`title`];
+          this.$root.$emit(`music_clicked`, chosen_music_name);
         }
       }
     },
@@ -82,5 +77,4 @@ img {
   height: 250px;
   cursor: pointer;
 }
-
 </style>
