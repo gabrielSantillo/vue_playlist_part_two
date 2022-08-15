@@ -13,7 +13,10 @@
       </article>
     </section>
     <div v-if="song_being_listened === false">
-      <h2>Pick a song</h2>
+      <h2>Add the songs for your playlist</h2>
+    </div>
+    <div v-else>
+      <h1>Playlist</h1>
     </div>
   </div>
 </template>
