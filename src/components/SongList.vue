@@ -24,13 +24,20 @@
 <script>
 export default {
   methods: {
+    /* this function is called after a button click event at the image */
     highlight_music(details) {
+      /* getting the song id attribute from the img*/
       let song_id = details[`target`].getAttribute(`song_id`);
+      /* changing the to true the value of the variable */
       this.song_being_listened = true;
 
+      /* making a for loop that goes to the entire array  */
       for (let i = 0; i < this.songs.length; i++) {
+        /* checking if the song id in the i position matches to the song id of the clicked img */
         if (this.songs[i][`song_id`] === song_id) {
+          /* getting the object of the songs that contain all information of the music */
           let chosen_music_object = this.songs[i];
+          /* creating a custom event, called music_clicked and passing the object to the listener */
           this.$root.$emit(`music_clicked`, chosen_music_object);
         }
       }
@@ -39,7 +46,7 @@ export default {
 
   data() {
     return {
-      /* this is a variable that starts as false so the h2 tag can be displayed in the screen an alert the user to pick a song */
+      /* this is a variable that starts as false so the h2 tag can be displayed in the screen a message to the user to pick a song */
       song_being_listened: false,
       /* array with 3 objects inside. Each object contain a title, band name, song id and an image that representes the song */
       songs: [
