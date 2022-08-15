@@ -23,11 +23,12 @@ export default {
   methods: {
     highlight_music(details) {
       let song_id = details[`target`].getAttribute(`song_id`);
+      this.song_being_listened = true;
 
       for (let i = 0; i < this.songs.length; i++) {
         if (this.songs[i][`song_id`] === song_id) {
-          let chosen_music_name = this.songs[i][`title`];
-          this.$root.$emit(`music_clicked`, chosen_music_name);
+          let chosen_music_object = this.songs[i];
+          this.$root.$emit(`music_clicked`, chosen_music_object);
         }
       }
     },

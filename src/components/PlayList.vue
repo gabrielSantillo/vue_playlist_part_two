@@ -1,16 +1,16 @@
 <template>
   <div>
     <h1>Playlist</h1>
-    <div ref="music_play_list"></div>
+    <div ref="music_play_list" class="music_play_list"></div>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    handle_music_clicked(name) {
+    handle_music_clicked(object) {
       this.$refs[`music_play_list`].insertAdjacentHTML(`beforeend`, `
-      <p>${name}</p>
+      <p class="music_name" song_id="${object[`song_id`]}">${object[`title`]}</p>
       `);
     },
   },
@@ -20,4 +20,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.music_play_list {
+    cursor: pointer;
+}
+</style>
